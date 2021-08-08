@@ -1,0 +1,5 @@
+select ConstituentID, EndDate, Nationality from Artists where Nationality=='Swiss'
+select Gender, DisplayName, EndDate, Nationality, BeginDate from Artists where BeginDate>292
+select Cataloged, ObjectID, Classification from Artworks where Height<187
+select ConstituentID from Artworks where Cataloged=='Y'
+select Cataloged, Width, Classification, ObjectID, DateAcquired, Height from Artworks where Classification=='Sculpture'

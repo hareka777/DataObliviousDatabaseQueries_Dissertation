@@ -1,0 +1,25 @@
+select Gender, BeginDate, ConstituentID, Nationality from Artworks where Classification!=Sculpture
+select DisplayName, ConstituentID, BeginDate, Nationality, Gender from Artworks where Classification!=Video
+select EndDate from Artworks where Classification==Periodical
+select ConstituentID, Gender, BeginDate from Artworks where Classification==Film
+select DisplayName, EndDate, BeginDate, ConstituentID from Artworks where Classification!=Drawing
+select EndDate, BeginDate from Artworks where Classification==Performance
+select EndDate, ConstituentID from Artworks where Classification!=Photograph
+select Gender, ConstituentID from Artworks where Classification==Ephemera
+select ConstituentID, Nationality, BeginDate, DisplayName, Gender from Artworks where Classification!=Print
+select EndDate from Artworks where Classification==Design
+select Gender, DisplayName, EndDate, ConstituentID from Artworks where Classification==Illustrated Book
+select BeginDate from Artworks where Classification!=Collage
+select EndDate, ConstituentID from Artworks where Classification!=Media
+select ConstituentID, Gender, BeginDate, DisplayName, EndDate from Artworks where Classification!=Graphic Design
+select ConstituentID, DisplayName from Artworks where Classification!=Painting
+select EndDate, BeginDate, Nationality, Gender from Artworks where Classification!=Frank Lloyd Wright Archive
+select EndDate, ConstituentID, DisplayName, BeginDate, Gender from Artworks where Classification!=Multiple
+select BeginDate, EndDate, DisplayName from Artworks where Classification!=Installation
+select ConstituentID, Gender from Artworks where Classification!=Furniture and Interiors
+select BeginDate from Artworks where Classification!=Architecture
+select BeginDate from Artworks where Classification==Publication
+select ConstituentID, DisplayName, BeginDate from Artworks where Classification!=Digital
+select ConstituentID, DisplayName, BeginDate, EndDate, Gender from Artworks where Classification!=Poster
+select EndDate from Artworks where Classification!=(not assigned)
+select DisplayName from Artworks where Classification==Mies van der Rohe Archive

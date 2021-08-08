@@ -1,0 +1,100 @@
+select Nationality, EndDate, DisplayName from Artists where Nationality!='Ecuadorian'
+select Gender, BeginDate from Artists where Nationality=='Nigerian'
+select Nationality, Gender, BeginDate, EndDate, DisplayName from Artists where Nationality=='Lithuanian'
+select BeginDate, Gender from Artists where Nationality=='Venezuelan'
+select DisplayName from Artists where Nationality=='Argentine'
+select Gender, BeginDate, DisplayName, Nationality from Artists where Nationality=='Chilean'
+select DisplayName from Artists where Nationality=='Portuguese'
+select Gender, EndDate, DisplayName, BeginDate, Nationality from Artists where Nationality!='Kyrgyzstani'
+select ConstituentID, Gender from Artists where Nationality=='Luxembourgish'
+select EndDate, Nationality from Artists where Nationality=='Beninese'
+select EndDate, ConstituentID, BeginDate from Artists where Nationality!='New Zealander'
+select BeginDate, EndDate, Nationality from Artists where Nationality!='Greek'
+select DisplayName from Artists where Nationality!='Swedish'
+select BeginDate from Artists where Nationality=='Bulgarian'
+select ConstituentID from Artists where Nationality!='Tunisian'
+select ConstituentID, Nationality, DisplayName, BeginDate from Artists where Nationality=='Costa Rican'
+select DisplayName, EndDate, Nationality, Gender, BeginDate from Artists where Nationality!='Iranian'
+select ConstituentID, BeginDate from Artists where Gender!='Male'
+select Nationality, Gender, BeginDate, EndDate, ConstituentID from Artists where Gender!='Female'
+select BeginDate, Gender, ConstituentID, EndDate from Artists where Gender!='male'
+select Gender, Nationality from Artists where Gender!='female'
+select DisplayName, Gender, BeginDate, ConstituentID, EndDate from Artists where BeginDate>1990
+select DisplayName, Gender, BeginDate, ConstituentID, EndDate from Artists where EndDate>1033
+select ConstituentID, EndDate, BeginDate from Artists where BeginDate<185
+select ConstituentID, EndDate, BeginDate from Artists where EndDate>1428
+select DisplayName, BeginDate, Nationality from Artists where BeginDate<1877
+select DisplayName, BeginDate, Nationality from Artists where EndDate<1121
+select Nationality, BeginDate, Gender, ConstituentID from Artists where BeginDate>126
+select Nationality, BeginDate, Gender, ConstituentID from Artists where EndDate>1795
+select Nationality, ConstituentID, BeginDate, EndDate, Gender from Artists where BeginDate>1580
+select Nationality, ConstituentID, BeginDate, EndDate, Gender from Artists where EndDate<53
+select ConstituentID, BeginDate, DisplayName, EndDate from Artists where BeginDate<472
+select ConstituentID, BeginDate, DisplayName, EndDate from Artists where EndDate>1030
+select Gender, Nationality, EndDate from Artists where BeginDate<1824
+select Gender, Nationality, EndDate from Artists where EndDate<549
+select DisplayName, ConstituentID, EndDate from Artists where BeginDate<216
+select DisplayName, ConstituentID, EndDate from Artists where EndDate>628
+select Nationality, BeginDate, EndDate from Artists where BeginDate<990
+select Nationality, BeginDate, EndDate from Artists where EndDate>92
+select BeginDate, Gender, EndDate, Nationality, DisplayName from Artists where BeginDate<1578
+select BeginDate, Gender, EndDate, Nationality, DisplayName from Artists where EndDate>1570
+select EndDate, Nationality, BeginDate, ConstituentID from Artists where BeginDate>1695
+select EndDate, Nationality, BeginDate, ConstituentID from Artists where EndDate>1485
+select EndDate from Artists where BeginDate>249
+select EndDate from Artists where EndDate>693
+select ConstituentID from Artists where BeginDate<148
+select ConstituentID from Artists where EndDate>1853
+select BeginDate, DisplayName from Artists where BeginDate<1488
+select BeginDate, DisplayName from Artists where EndDate>576
+select Gender from Artists where BeginDate>559
+select Gender from Artists where EndDate<1409
+select Nationality, BeginDate, Gender, DisplayName from Artists where BeginDate<1467
+select Nationality, BeginDate, Gender, DisplayName from Artists where EndDate<1949
+select DisplayName, Nationality from Artists where BeginDate>1297
+select DisplayName, Nationality from Artists where EndDate<177
+select EndDate, Nationality from Artists where BeginDate<1074
+select EndDate, Nationality from Artists where EndDate>787
+select Height, Classification from Artworks where Height>245
+select Height, ConstituentID, Width, Cataloged, ObjectID from Artworks where Width>380
+select Width, Classification, DateAcquired, Cataloged from Artworks where Height>319
+select Width, ObjectID, Classification, ConstituentID, Height, DateAcquired from Artworks where Width<81
+select ConstituentID, Width, Cataloged, DateAcquired from Artworks where Height>78
+select Width from Artworks where Width>974
+select Height, Width from Artworks where Height>205
+select Width, DateAcquired, Height, ObjectID, ConstituentID, Classification from Artworks where Width<169
+select ObjectID, Width from Artworks where Height>152
+select Width, Classification, DateAcquired from Artworks where Width<268
+select DateAcquired, Classification, ConstituentID, ObjectID from Artworks where Height<114
+select DateAcquired, Width, ConstituentID, ObjectID, Cataloged from Artworks where Width<374
+select Cataloged, DateAcquired, ConstituentID, Height from Artworks where Height>244
+select Width, ObjectID, ConstituentID, Height, DateAcquired from Artworks where Width<164
+select Width, DateAcquired, ConstituentID from Artworks where Height>103
+select DateAcquired, Cataloged, ConstituentID, Height, Width, Classification from Artworks where Width>584
+select ObjectID, Classification, ConstituentID, DateAcquired, Height from Artworks where Height<191
+select ObjectID from Artworks where Width<496
+select Classification, DateAcquired, Height from Artworks where Height>160
+select ConstituentID, Classification from Artworks where Width>718
+select Classification, DateAcquired, Cataloged, ConstituentID, ObjectID from Artworks where Cataloged=='Y'
+select DateAcquired, Width, Cataloged, ConstituentID, Height, Classification from Artworks where Cataloged=='N'
+select DateAcquired, Classification from Artworks where Classification=='Photograph'
+select ObjectID, Width, Height, Cataloged, DateAcquired from Artworks where Classification=='Mies van der Rohe Archive'
+select Classification, Width, Cataloged from Artworks where Classification=='Illustrated Book'
+select DateAcquired, ConstituentID, Cataloged from Artworks where Classification!='Print'
+select ConstituentID, DateAcquired, Cataloged, Height, Classification from Artworks where Classification!='Installation'
+select Classification, Width, Height from Artworks where Classification!='Multiple'
+select DateAcquired from Artworks where Classification!='Architecture'
+select Height, ConstituentID, DateAcquired, ObjectID, Width, Cataloged from Artworks where Classification=='Design'
+select ConstituentID, DateAcquired, Width from Artworks where Classification!='Drawing'
+select Height, ConstituentID, Classification, ObjectID from Artworks where Classification!='Painting'
+select Width, Classification, Height, ObjectID from Artworks where Classification=='Sculpture'
+select Cataloged, Classification, Height, ConstituentID, DateAcquired, ObjectID from Artworks where Classification!='Work on Paper'
+select Width from Artworks where Classification!='Ephemera'
+select Classification, ObjectID from Artworks where Classification=='Periodical'
+select Width, Classification, Cataloged, ConstituentID, Height from Artworks where Classification=='Video'
+select Cataloged, ConstituentID, Classification, Width, DateAcquired, Height from Artworks where Classification=='Film'
+select Width, Height, ObjectID, ConstituentID, Classification from Artworks where Classification!='Frank Lloyd Wright Archive'
+select Width, ConstituentID, Classification, Cataloged, DateAcquired, Height from Artworks where Classification!='(not assigned)'
+select ConstituentID from Artworks where Classification!='Audio'
+select ConstituentID from Artworks where Classification=='Performance'
+select ObjectID from Artworks where Classification!='Textile'

@@ -1,0 +1,142 @@
+select ConstituentID, Gender, BeginDate, DisplayName from Artists where Nationality!=Dutch
+select BeginDate from Artists where Nationality==American
+select DisplayName, ConstituentID, Nationality, EndDate, BeginDate from Artists where Nationality==German
+select ConstituentID, BeginDate, Nationality, Gender from Artists where Nationality!=Israeli
+select Nationality, DisplayName, BeginDate from Artists where Nationality!=Italian
+select ConstituentID, DisplayName, Nationality, EndDate from Artists where Nationality==Czech
+select ConstituentID, DisplayName, EndDate, Gender from Artists where Nationality!=Panamanian
+select Gender, ConstituentID from Artists where Nationality==Argentine
+select ConstituentID, Nationality, DisplayName, Gender, BeginDate from Artists where Nationality!=French
+select BeginDate, ConstituentID, EndDate from Artists where Nationality==Canadian
+select BeginDate, Gender, ConstituentID, DisplayName from Artists where Nationality==Irish
+select BeginDate, EndDate, ConstituentID, DisplayName, Gender from Artists where Nationality!=Nationality unknown
+select DisplayName from Artists where Nationality==Swiss
+select Gender, Nationality, ConstituentID, BeginDate from Artists where Nationality==Croatian
+select EndDate, BeginDate, Nationality, DisplayName, ConstituentID from Artists where Nationality!=Swedish
+select DisplayName from Artists where Nationality!=Peruvian
+select EndDate from Artists where Nationality==Russian
+select EndDate from Artists where Nationality!=Japanese
+select Gender from Artists where Nationality==Yugoslav
+select Gender from Artists where Nationality==Bosnian
+select DisplayName from Artists where Nationality==Austrian
+select ConstituentID, Nationality, EndDate, Gender, BeginDate from Artists where Nationality!=British
+select Nationality, DisplayName from Artists where Nationality!=Ecuadorian
+select BeginDate, ConstituentID, Nationality, Gender, DisplayName from Artists where Nationality!=Mexican
+select Gender, BeginDate, DisplayName, Nationality from Artists where Nationality!=Chinese
+select ConstituentID, BeginDate from Artists where Nationality==Belgian
+select Nationality, EndDate, Gender, BeginDate from Artists where Nationality!=Macedonian
+select ConstituentID, EndDate from Artists where Nationality!=Venezuelan
+select Gender, DisplayName, Nationality from Artists where Nationality==Polish
+select Nationality, Gender, ConstituentID, EndDate from Artists where Nationality==South African
+select Gender, DisplayName from Artists where Nationality==Chilean
+select Gender, EndDate from Artists where Nationality!=Spanish
+select ConstituentID, BeginDate, Gender, DisplayName from Artists where Nationality==Moroccan
+select EndDate, Nationality, DisplayName from Artists where Nationality!=Greek
+select BeginDate from Artists where Nationality!=Sudanese
+select ConstituentID, Gender, BeginDate, EndDate, DisplayName from Artists where Nationality==Colombian
+select ConstituentID from Artists where Nationality!=Korean
+select EndDate, DisplayName, BeginDate, Nationality from Artists where Nationality!=Danish
+select EndDate, Gender, DisplayName, Nationality from Artists where Nationality==Indian
+select EndDate, Gender, DisplayName, ConstituentID from Artists where Nationality!=Brazilian
+select Nationality from Artists where Nationality!=New Zealander
+select EndDate, Nationality, DisplayName, Gender from Artists where Nationality!=Australian
+select EndDate, DisplayName, Nationality, Gender from Artists where Nationality==Hungarian
+select BeginDate, Nationality, EndDate, DisplayName, ConstituentID from Artists where Nationality==Haitian
+select BeginDate, ConstituentID, DisplayName, Nationality, EndDate from Artists where Nationality!=Turkish
+select Gender, ConstituentID from Artists where Nationality!=Finnish
+select Nationality, EndDate, DisplayName from Artists where Nationality==Romanian
+select ConstituentID, BeginDate, Nationality, DisplayName from Artists where Nationality==Lebanese
+select EndDate, DisplayName from Artists where Nationality!=Cuban
+select EndDate, ConstituentID, DisplayName from Artists where Nationality!=Portuguese
+select Gender, ConstituentID, EndDate, BeginDate from Artists where Nationality==Norwegian
+select BeginDate, Nationality, EndDate, Gender from Artists where Nationality==Georgian
+select EndDate, Gender, DisplayName from Artists where Nationality!=Bolivian
+select DisplayName from Artists where Nationality==Luxembourgish
+select Nationality from Artists where Nationality==Puerto Rican
+select Gender, Nationality, BeginDate, DisplayName, ConstituentID from Artists where Nationality==Albanian
+select BeginDate, ConstituentID, Nationality, Gender, DisplayName from Artists where Nationality!=Canadian Inuit
+select DisplayName, BeginDate from Artists where Nationality==Congolese
+select EndDate, Gender, ConstituentID, Nationality, DisplayName from Artists where Nationality==Kuwaiti
+select ConstituentID, Nationality, Gender, DisplayName from Artists where Nationality!=Paraguayan
+select Nationality, ConstituentID, DisplayName, BeginDate, Gender from Artists where Nationality!=Czechoslovakian
+select Nationality, BeginDate from Artists where Nationality!=Guatemalan
+select Nationality, Gender, ConstituentID, DisplayName, BeginDate from Artists where Nationality!=Bulgarian
+select ConstituentID, Gender, Nationality, BeginDate from Artists where Nationality!=Scottish
+select Gender, EndDate from Artists where Nationality==Serbian
+select ConstituentID, Gender from Artists where Nationality!=Uruguayan
+select Gender from Artists where Nationality!=Iranian
+select BeginDate from Artists where Nationality!=Icelandic
+select BeginDate, ConstituentID from Artists where Nationality==Zimbabwean
+select EndDate, Nationality, BeginDate, DisplayName from Artists where Nationality==Slovak
+select BeginDate from Artists where Nationality!=Namibian
+select EndDate, ConstituentID from Artists where Nationality==Nicaraguan
+select Gender, BeginDate, DisplayName, EndDate from Artists where Nationality==Malian
+select EndDate, Gender, DisplayName from Artists where Nationality==Egyptian
+select Gender from Artists where Nationality==Singaporean
+select DisplayName, BeginDate, Nationality, EndDate, ConstituentID from Artists where Nationality==Ivorian
+select DisplayName, ConstituentID from Artists where Nationality!=Palestinian
+select BeginDate, Nationality, ConstituentID from Artists where Nationality==Catalan
+select ConstituentID, DisplayName from Artists where Nationality!=Beninese
+select DisplayName, BeginDate, ConstituentID, Gender, EndDate from Artists where Nationality!=Nigerian
+select ConstituentID from Artists where Nationality==Coptic
+select ConstituentID, BeginDate, Nationality from Artists where Nationality==Afghan
+select DisplayName, Gender, BeginDate, EndDate, ConstituentID from Artists where Nationality==Costa Rican
+select DisplayName, EndDate, BeginDate, Gender from Artists where Nationality!=Tunisian
+select EndDate, Nationality, DisplayName, Gender from Artists where Nationality==Native American
+select Nationality, EndDate, BeginDate, Gender, DisplayName from Artists where Nationality!=Emirati
+select Nationality, BeginDate, ConstituentID, Gender from Artists where Nationality!=Bahamian
+select DisplayName, Gender, ConstituentID, BeginDate from Artists where Nationality==Cypriot
+select Nationality, EndDate, DisplayName from Artists where Nationality==Algerian
+select ConstituentID, BeginDate, Nationality, Gender, DisplayName from Artists where Nationality!=Lithuanian
+select Nationality from Artists where Nationality==Pakistani
+select BeginDate, Nationality, ConstituentID, EndDate from Artists where Nationality!=Kyrgyzstani
+select ConstituentID, DisplayName, BeginDate from Artists where Nationality!=Welsh
+select BeginDate from Artists where Nationality==Thai
+select DisplayName, Gender, ConstituentID from Artists where Nationality==Estonian
+select EndDate, Nationality, ConstituentID, Gender, BeginDate from Artists where Nationality!=Vietnamese
+select Nationality, BeginDate, ConstituentID from Artists where Nationality!=Taiwanese
+select Gender, BeginDate, Nationality, ConstituentID, EndDate from Artists where Nationality!=Cambodian
+select BeginDate from Artists where Gender!=Male
+select Gender, ConstituentID, DisplayName, Nationality from Artists where Gender!=Female
+select Gender from Artists where Gender==male
+select Nationality, DisplayName, EndDate, Gender from Artists where Gender!=female
+select EndDate, DisplayName, Gender, Nationality from Artists where BeginDate<1713
+select EndDate, DisplayName, Gender, Nationality from Artists where EndDate<811
+select EndDate, BeginDate, Nationality, Gender from Artists where BeginDate>402
+select EndDate, BeginDate, Nationality, Gender from Artists where EndDate<1568
+select DisplayName, ConstituentID, Nationality, Gender from Artists where BeginDate>1302
+select DisplayName, ConstituentID, Nationality, Gender from Artists where EndDate<923
+select ConstituentID, Nationality from Artists where BeginDate>1814
+select ConstituentID, Nationality from Artists where EndDate>675
+select BeginDate, Gender, EndDate, ConstituentID, Nationality from Artists where BeginDate>1315
+select BeginDate, Gender, EndDate, ConstituentID, Nationality from Artists where EndDate<341
+select DisplayName, EndDate from Artists where BeginDate>199
+select DisplayName, EndDate from Artists where EndDate>703
+select Nationality, DisplayName, ConstituentID, Gender from Artists where BeginDate<1369
+select Nationality, DisplayName, ConstituentID, Gender from Artists where EndDate<687
+select Nationality from Artists where BeginDate>1483
+select Nationality from Artists where EndDate<584
+select ConstituentID from Artists where BeginDate>65
+select ConstituentID from Artists where EndDate>358
+select BeginDate, ConstituentID, Gender, EndDate, DisplayName from Artists where BeginDate>931
+select BeginDate, ConstituentID, Gender, EndDate, DisplayName from Artists where EndDate<1482
+select DisplayName, Nationality, Gender, EndDate from Artists where BeginDate<725
+select DisplayName, Nationality, Gender, EndDate from Artists where EndDate>898
+select DisplayName, BeginDate, ConstituentID from Artists where BeginDate>1317
+select DisplayName, BeginDate, ConstituentID from Artists where EndDate>1054
+select BeginDate, EndDate, ConstituentID from Artists where BeginDate>813
+select BeginDate, EndDate, ConstituentID from Artists where EndDate<1765
+select BeginDate, EndDate, Nationality, DisplayName from Artists where BeginDate>2011
+select BeginDate, EndDate, Nationality, DisplayName from Artists where EndDate<1611
+select ConstituentID, Gender from Artists where BeginDate>1117
+select ConstituentID, Gender from Artists where EndDate>1016
+select ConstituentID, Gender from Artists where BeginDate>1261
+select ConstituentID, Gender from Artists where EndDate<1173
+select ConstituentID, DisplayName from Artists where BeginDate<772
+select ConstituentID, DisplayName from Artists where EndDate>358
+select Gender, ConstituentID, DisplayName, Nationality, EndDate from Artists where BeginDate<2002
+select Gender, ConstituentID, DisplayName, Nationality, EndDate from Artists where EndDate>366
+select BeginDate, DisplayName from Artists where BeginDate>4
+select BeginDate, DisplayName from Artists where EndDate<2018
+select EndDate, Gender, ConstituentID, DisplayName from Artists where BeginDate<388
+select EndDate, Gender, ConstituentID, DisplayName from Artists where EndDate<163

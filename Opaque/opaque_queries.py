@@ -33,6 +33,9 @@ class Opaque:
             raise ValueError('Only 1 table allowed at filtering queries!')
         table = self.__database.get_table(table[0])
 
+        size_of_table = table.memory_usage(deep=True).sum() * 10 ** -6
+        print('Size of table: ', size_of_table)
+
         if 'where' in query:
             conditions = query['where']
         else:
@@ -51,14 +54,6 @@ class Opaque:
             left_conditions, right_conditions, comparators = common_building_blocks.process_where_condition(conditions)
 
             table = self.__scan_table(table, left_conditions, right_conditions, comparators)
-
-            '''table = self.__opaque_blocks.column_sort(table, self.__condition_column)
-            last_row_index = self.__scan_sorted_conditioned_table(table)
-
-            # at the oblivious padding mode, we need to keep the dummy records as well
-            #result_table = table[0:last_row_index]
-            result_table = table.copy(deep=True)[selected_fields]
-            result_table[last_row_index:] = np.nan'''
 
             # ending the timer and registering the time elapsed
             end_time = time.time()

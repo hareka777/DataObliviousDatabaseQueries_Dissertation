@@ -13,9 +13,10 @@ myspark.add_database_table('Artworks', artworks_table_path)
 
 parent_path = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
 query_list = []
-with open(parent_path + "/generated_queries/filtering_queries_100.txt", "r") as artist_queries:
+with open(parent_path + "/generated_queries/join_queries.txt", "r") as artist_queries:
     query_list = artist_queries.readlines()
 
 for query in query_list:
+    print(query)
     myspark.execute_query_with_metrics(query.strip('\n'))
-cost_tracker.SparkTracker.log_experiment_results('Spark_filtering_100.txt')
+cost_tracker.SparkTracker.log_experiment_results('Spark_join_100.txt')

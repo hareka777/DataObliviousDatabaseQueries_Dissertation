@@ -515,17 +515,21 @@ def generate_chart(reading_costs, writing_costs, total_costs, block_size, memory
 
     # I have choose the colours from the following website:
     # https://www.color-hex.com/
+    plt.figure(figsize=[10, 7])
     plt.bar(positions_reading, reading_costs,color='#a98d7f', edgecolor='white', width=column_width, label='Reading Operations')
     plt.bar(positions_writing, writing_costs, color='#6a8154', edgecolor='white', width=column_width, label='Writing Operations')
     plt.bar(positions_total, total_costs, color='#714635', edgecolor='white', width=column_width, label='All Operations')
 
-    plt.xlabel('Algorithm')
-    plt.ylabel('Cost [Number of memory accesses]')
+    plt.xlabel('Algorithm', fontsize=20)
+    plt.ylabel('Cost [Number of memory accesses]', fontsize=20)
     plt.yscale('log', base=2)
-    #plt.xticks([r + column_width for r in range(len(positions_reading))], algorithms)
-    plt.title('Cost of filtering algorithms (memory size= '+ str(memory_size) + 'MB and block size = ' + str(block_size) +') ')
+    plt.xticks(fontsize=20)
+    plt.yticks(fontsize=20)
+    plt.xticks([r + column_width for r in range(len(positions_reading))], algorithms)
+    plt.title('Cost of filtering algorithms (block size =' + str(block_size) + ')', fontsize=25)
 
-    plt.legend()
+    plt.legend(bbox_to_anchor=(0., 1.2, 1., .102), loc='upper left',
+           ncol=2, mode="expand", borderaxespad=0., fontsize=20)
     plt.show()
 
 def generate_chart_1(opaque_all, opaque_reading, oblidb_small_all, oblidb_small_reading,
@@ -553,24 +557,147 @@ def generate_chart_1(opaque_all, opaque_reading, oblidb_small_all, oblidb_small_
     plt.bar(positions_4, oblidb_hash_all, color='#99281f', edgecolor='white', width=column_width, label='ObliDB Hash query')
     plt.bar(positions_4, oblidb_hash_reading, color='#a7a7a7', edgecolor='white', width=column_width)
 
-    plt.xlabel('Block size')
-    plt.ylabel('Cost [Number of memory accesses]')
+    plt.xlabel('Block size', fontsize=20)
+    plt.ylabel('Cost [Number of memory accesses]', fontsize=20)
     plt.yscale('log', base=2)
-    plt.xticks([r + column_width for r in range(len(positions_1))], block_sizes)
-    plt.title('Cost of filtering algorithms (memory size= '+ str(memory_size) + 'MB )')
+    plt.yticks(fontsize=20)
+    plt.xticks([r + column_width for r in range(len(positions_1))], block_sizes, fontsize=20)
+    plt.title('Cost of filtering algorithms (memory size= '+ str(memory_size) + 'MB )', fontsize=20)
 
     plt.legend()
     plt.show()
 
+def generate_chart_2(oblidb_small_all_costs, oblidb_small_reading):
+    #block_sizes = ['1 record','3 records', '5 records', '10 records', '20 records']
+    block_size_index = 4
+    column_width = 0.5
+    oblivious_memory_sizes = ['0.01 MB', '0.05 MB', '0.1 MB', '0.2 MB', '0.3 MB']
+
+    positions_1 = np.arange(5)
+    positions_2 = [previous_width + column_width for previous_width in positions_1]
+    positions_3 = [previous_width + column_width for previous_width in positions_2]
+
+    all_costs_block_20 = [oblidb_small_all_costs[(str(0.01))][block_size_index],
+                    oblidb_small_all_costs[(str(0.05))][block_size_index],
+                    oblidb_small_all_costs[(str(0.1))][block_size_index],
+                    oblidb_small_all_costs[(str(0.2))][block_size_index],
+                    oblidb_small_all_costs[(str(0.3))][block_size_index]]
+
+    reading_costs_block_20 = [oblidb_small_reading[(str(0.01))][block_size_index],
+                 oblidb_small_reading[(str(0.05))][block_size_index],
+                 oblidb_small_reading[(str(0.1))][block_size_index],
+                 oblidb_small_reading[(str(0.2))][block_size_index],
+                 oblidb_small_reading[(str(0.3))][block_size_index]]
+    block_size_index = 3
+
+    all_costs_block_10 = [oblidb_small_all_costs[(str(0.01))][block_size_index],
+                          oblidb_small_all_costs[(str(0.05))][block_size_index],
+                          oblidb_small_all_costs[(str(0.1))][block_size_index],
+                          oblidb_small_all_costs[(str(0.2))][block_size_index],
+                          oblidb_small_all_costs[(str(0.3))][block_size_index]]
+
+    reading_costs_block_10 = [oblidb_small_reading[(str(0.01))][block_size_index],
+                              oblidb_small_reading[(str(0.05))][block_size_index],
+                              oblidb_small_reading[(str(0.1))][block_size_index],
+                              oblidb_small_reading[(str(0.2))][block_size_index],
+                              oblidb_small_reading[(str(0.3))][block_size_index]]
+
+    block_size_index = 2
+
+    all_costs_block_5 = [oblidb_small_all_costs[(str(0.01))][block_size_index],
+                          oblidb_small_all_costs[(str(0.05))][block_size_index],
+                          oblidb_small_all_costs[(str(0.1))][block_size_index],
+                          oblidb_small_all_costs[(str(0.2))][block_size_index],
+                          oblidb_small_all_costs[(str(0.3))][block_size_index]]
+
+    reading_costs_block_5 = [oblidb_small_reading[(str(0.01))][block_size_index],
+                              oblidb_small_reading[(str(0.05))][block_size_index],
+                              oblidb_small_reading[(str(0.1))][block_size_index],
+                              oblidb_small_reading[(str(0.2))][block_size_index],
+                              oblidb_small_reading[(str(0.3))][block_size_index]]
+
+    block_size_index = 1
+
+    all_costs_block_3 = [oblidb_small_all_costs[(str(0.01))][block_size_index],
+                          oblidb_small_all_costs[(str(0.05))][block_size_index],
+                          oblidb_small_all_costs[(str(0.1))][block_size_index],
+                          oblidb_small_all_costs[(str(0.2))][block_size_index],
+                          oblidb_small_all_costs[(str(0.3))][block_size_index]]
+
+    reading_costs_block_3 = [oblidb_small_reading[(str(0.01))][block_size_index],
+                              oblidb_small_reading[(str(0.05))][block_size_index],
+                              oblidb_small_reading[(str(0.1))][block_size_index],
+                              oblidb_small_reading[(str(0.2))][block_size_index],
+                              oblidb_small_reading[(str(0.3))][block_size_index]]
+
+    block_size_index = 0
+
+    all_costs_block_1 = [oblidb_small_all_costs[(str(0.01))][block_size_index],
+                         oblidb_small_all_costs[(str(0.05))][block_size_index],
+                         oblidb_small_all_costs[(str(0.1))][block_size_index],
+                         oblidb_small_all_costs[(str(0.2))][block_size_index],
+                         oblidb_small_all_costs[(str(0.3))][block_size_index]]
+
+    reading_costs_block_1 = [oblidb_small_reading[(str(0.01))][block_size_index],
+                             oblidb_small_reading[(str(0.05))][block_size_index],
+                             oblidb_small_reading[(str(0.1))][block_size_index],
+                             oblidb_small_reading[(str(0.2))][block_size_index],
+                             oblidb_small_reading[(str(0.3))][block_size_index]]
+
+    column_width = 0.15
+
+    positions_1 = np.arange(5)
+    positions_2 = [previous_width + column_width for previous_width in positions_1]
+    positions_3 = [previous_width + column_width for previous_width in positions_2]
+    positions_4 = [previous_width + column_width for previous_width in positions_3]
+    positions_5 = [previous_width + column_width for previous_width in positions_4]
+
+    plt.figure(figsize=[10, 7])
+    # I have choose the colours from the following website:
+    # https://www.color-hex.com/
+    plt.bar(positions_1, all_costs_block_1, color='#aa77aa', width=column_width, edgecolor='white',
+            label='Costs with 1 record/block')
+    plt.bar(positions_1, reading_costs_block_1, color='#a7a7a7', width=column_width, edgecolor='white', label='Reading cost')
+    plt.bar(positions_2, all_costs_block_3, color='#46282a', edgecolor='white', width=column_width,
+            label='Costs with 3 record/block')
+    plt.bar(positions_2, reading_costs_block_3, color='#a7a7a7', edgecolor='white', width=column_width)
+    plt.bar(positions_3, all_costs_block_5, color='#117791', edgecolor='white', width=column_width,
+            label='Costs with 5 record/block')
+    plt.bar(positions_3, reading_costs_block_5, color='#a7a7a7', edgecolor='white', width=column_width)
+    plt.bar(positions_4, all_costs_block_10, color='#99281f', edgecolor='white', width=column_width,
+            label='Costs with 10 record/block')
+    plt.bar(positions_4, reading_costs_block_10, color='#a7a7a7', edgecolor='white', width=column_width)
+    plt.bar(positions_5, all_costs_block_20, color='#bbbb22', edgecolor='white', width=column_width,
+            label='Costs with 20 record/block')
+    plt.bar(positions_5, reading_costs_block_20, color='#a7a7a7', edgecolor='white', width=column_width)
+
+    plt.xlabel('Oblivious memory size', fontsize=25)
+    plt.ylabel('Cost [Number of memory accesses]', fontsize=25)
+    plt.yticks(fontsize=20)
+    plt.yscale('log', base=2)
+    plt.xticks([r + column_width for r in range(len(positions_1))], oblivious_memory_sizes, fontsize=20)
+    plt.title('Cost of ObliDB\'s Small filtering algorithm', fontsize=30)
+
+    plt.legend(fontsize=17)
+    plt.show()
+
 for memory in oblivious_memory_sizes:
-    '''for block_size_index in range(len(block_sizes)):
+    for block_size_index in range(len(block_sizes)):
+        print('Memory' ,memory)
+        print('block', block_sizes[block_size_index])
+        print('Readig: ', oblidb_small_reading_costs[str(memory)][block_size_index])
+        print('Writing: ',oblidb_small_writing_costs[str(memory)][block_size_index])
+        print('All', oblidb_small_all_costs[str(memory)][block_size_index])
+        print('----------------------------------------------------')
         reading_costs = [reading_costs_opaque_filtering[block_size_index], oblidb_small_reading_costs[str(memory)][block_size_index],
                          oblidb_large_reading_costs[str(memory)][block_size_index], oblidb_hash_reading_costs[str(memory)][block_size_index]]
         writing_costs = [writing_costs_opaque_filtering[block_size_index], oblidb_small_writing_costs[str(memory)][block_size_index],
                          oblidb_large_writing_costs[str(memory)][block_size_index], oblidb_hash_writing_costs[str(memory)][block_size_index]]
         all_costs = [all_costs_opaue_filtering[block_size_index], oblidb_small_all_costs[str(memory)][block_size_index],
                          oblidb_large_all_costs[str(memory)][block_size_index], oblidb_hash_all_costs[str(memory)][block_size_index]]
-        generate_chart_1(reading_costs, writing_costs, all_costs, block_sizes[block_size_index], memory)'''
-    generate_chart_1(all_costs_opaue_filtering, reading_costs_opaque_filtering, oblidb_small_all_costs[str(memory)],
-                     oblidb_small_reading_costs[str(memory)], oblidb_large_all_costs[str(memory)], oblidb_large_reading_costs[str(memory)],
-                     oblidb_hash_all_costs[str(memory)], oblidb_hash_reading_costs[str(memory)],  memory)
+        generate_chart(reading_costs, writing_costs, all_costs, block_sizes[block_size_index], memory)
+        '''
+    #generate_chart_1(all_costs_opaue_filtering, reading_costs_opaque_filtering, oblidb_small_all_costs[str(memory)],
+                     #oblidb_small_reading_costs[str(memory)], oblidb_large_all_costs[str(memory)], oblidb_large_reading_costs[str(memory)],
+                     #oblidb_hash_all_costs[str(memory)], oblidb_hash_reading_costs[str(memory)],  memory)'''
+generate_chart_2(oblidb_small_all_costs, oblidb_small_reading_costs)

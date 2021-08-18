@@ -9,8 +9,8 @@ def execute_filtering(block_size):
     print('Block size: ', block_size)
     # settings: setting up the database
     parent_path = os.path.abspath(os.path.join(os.getcwd(), os.pardir))
-    artists_table_path = os.path.join(parent_path, 'data/csv/' + 'final_artists_table.csv')
-    artworks_table_path = os.path.join(parent_path, 'data/csv/' + 'final_artworks_table.csv')
+    artists_table_path = os.path.join(parent_path, 'data/csv/' + 'Artists.csv')
+    artworks_table_path = os.path.join(parent_path, 'data/csv/' + 'Artworks.csv')
 
     artists_table = dataframe_table.DataFrameTable(pd.read_csv(artists_table_path))
     artworks_table = dataframe_table.DataFrameTable(pd.read_csv(artworks_table_path))

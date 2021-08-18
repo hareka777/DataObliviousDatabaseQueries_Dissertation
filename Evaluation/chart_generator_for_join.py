@@ -38,25 +38,25 @@ oblidb_om_all_costs = {}
 oblidb_om_reading_costs = {}
 oblidb_om_writing_costs = {}
 
-oblidb_om_all_costs[str(0.0015)] = [126200, 119871, 118611, 117615, 117109]
-oblidb_om_reading_costs[str(0.0015)] = [62801, 59836, 59246, 58778, 58540]
-oblidb_om_writing_costs[str(0.0015)] = [63399, 60035, 59365, 58837, 58569]
+oblidb_om_all_costs[str(0.0015)] = [114477, 112693, 112319, 112121, 112023]
+oblidb_om_reading_costs[str(0.0015)] = [57537, 56447, 56219, 56090, 56026]
+oblidb_om_writing_costs[str(0.0015)] = [56940, 56246, 56100, 56031, 55997]
 
-oblidb_om_all_costs[str(0.0075)] = [126200, 119871, 118611, 117615, 117109]
-oblidb_om_reading_costs[str(0.0075)] = [62801, 59836, 59246, 58778, 58540]
-oblidb_om_writing_costs[str(0.0075)] = [63399, 60035, 59365, 58837, 58569]
+oblidb_om_all_costs[str(0.0075)] = [107431, 106027, 105745, 105547, 105449]
+oblidb_om_reading_costs[str(0.0075)] = [54014, 53114, 52932, 52803, 52739]
+oblidb_om_writing_costs[str(0.0075)] = [53417, 52913, 52813, 52744, 52710]
 
-oblidb_om_all_costs[str(0.015)] = [126200, 119871, 118611, 117615, 117109]
-oblidb_om_reading_costs[str(0.015)] = [62801, 59836, 59246, 58778, 58540]
-oblidb_om_writing_costs[str(0.015)] = [63399, 60035, 59365, 58837, 58569]
+oblidb_om_all_costs[str(0.015)] = [104871, 103517, 103245, 103047, 102949]
+oblidb_om_reading_costs[str(0.015)] = [52734, 51859, 51682, 51553, 51489]
+oblidb_om_writing_costs[str(0.015)] = [52137, 51658, 1563, 51494, 51460]
 
-oblidb_om_all_costs[str(0.03)] = [126200, 119871, 118611, 117615, 117109]
-oblidb_om_reading_costs[str(0.03)] = [62801, 59836, 59246, 58778, 58540]
-oblidb_om_writing_costs[str(0.03)] = [63399, 60035, 59365, 58837, 58569]
+oblidb_om_all_costs[str(0.03)] = [102823, 101493, 101221, 101023, 100925]
+oblidb_om_reading_costs[str(0.03)] = [51710, 50847, 50670, 50541, 50477]
+oblidb_om_writing_costs[str(0.03)] = [51113, 50646, 50551, 50482, 50448]
 
-oblidb_om_all_costs[str(0.045)] = [126200, 119871, 118611, 117615, 117109]
-oblidb_om_reading_costs[str(0.045)] = [62801, 59836, 59246, 58778, 58540]
-oblidb_om_writing_costs[str(0.045)] = [63399, 60035, 59365, 58837, 58569]
+oblidb_om_all_costs[str(0.045)] = [101287, 99963, 99697, 99499, 99401]
+oblidb_om_reading_costs[str(0.045)] = [50942, 50082, 49908, 49779, 49715]
+oblidb_om_writing_costs[str(0.045)] = [50345, 49881, 49789, 49720, 49686]
 
 # Opaque's sort merge join overall costs
 opaque_all_costs = {}
@@ -103,13 +103,17 @@ def generate_chart_1(opaque_all, opaque_reading, oblidb_om_all, oblidb_om_readin
     plt.bar(positions_3, oblidb_hash_all, color='#117791', edgecolor='white', width=column_width, label='ObliDB hash join algorithm')
     plt.bar(positions_3, oblidb_hash_reading, color='#a7a7a7', edgecolor='white', width=column_width)
 
-    plt.xlabel('Block size')
-    plt.ylabel('Cost [Number of memory accesses]')
+    plt.xlabel('Block size', fontsize=20)
+    plt.ylabel('Cost [Number of memory accesses]', fontsize=20)
     plt.yscale('log', base=2)
-    plt.xticks([r + column_width for r in range(len(positions_1))], block_sizes)
-    plt.title('Cost of join algorithms (memory size= '+ str(memory_size) + 'MB )')
+    plt.yticks(fontsize=20)
+    plt.xticks([r + column_width for r in range(len(positions_1))], block_sizes, fontsize=20)
+    plt.title('Cost of join algorithms (memory size= '+ str(memory_size) + 'MB )', fontsize=25)
 
-    plt.legend(loc='upper center', bbox_to_anchor=(0.5, -0.05))
+    # the legend style implementation based on the following tutorial/documentation:
+    # https://matplotlib.org/stable/tutorials/intermediate/legend_guide.html
+    plt.legend(bbox_to_anchor=(0., 1.2, 1., .102), loc='upper left',
+           ncol=2, mode="expand", borderaxespad=0., fontsize=17)
     plt.show()
 
 for memory in oblivious_memory_sizes:

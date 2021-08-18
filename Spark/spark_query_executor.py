@@ -45,14 +45,14 @@ class Processor():
         if path is None:
             created_table = (self.spark.read.format("csv").options(header="true")
                              .load(os.path.join(os.getcwd(), 'data/csv/' + table_name + '.csv')))
-            created_table = created_table.limit(5000)
+            created_table = created_table.limit(300)
 
             # registering data to the database
             created_table.createOrReplaceTempView(table_name)
         else:
             created_table = (self.spark.read.format("csv").options(header="true")
                              .load(path))
-            created_table = created_table.limit(5000)
+            created_table = created_table.limit(300)
 
             # registering data to the database
             created_table.createOrReplaceTempView(table_name)

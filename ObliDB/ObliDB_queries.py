@@ -48,6 +48,7 @@ class ObliDB():
 
         # computing how many result records can fit to the oblivious memory [MB]
         size_of_table = table.memory_usage(deep=True).sum() * 10 ** -6
+        print('Size of table: ', size_of_table)
         oblivious_memory_size = self.__oblivious_memory_size
         number_of_records = table.shape[0]
         # we need to store the current read in record and the buffer of the result records
@@ -413,6 +414,7 @@ class ObliDB():
 
         # STAGE 1: union
         unioned_table = dataframe_table.DataFrameTable(pd.concat(tables, ignore_index=True))
+        print('The table size is: ', unioned_table.memory_usage(deep=True).sum() * 10 ** -6)
 
         unioned_table = self.__obliDB_blocks.bitonic_sort(unioned_table, join_columns[0], 0)
 

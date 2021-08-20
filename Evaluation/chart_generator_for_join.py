@@ -87,21 +87,30 @@ def generate_chart_1(opaque_all, opaque_reading, oblidb_om_all, oblidb_om_readin
                      oblidb_hash_all, oblidb_hash_reading, memory_size):
     block_sizes = ['1 record','3 records', '5 records', '10 records', '20 records']
 
-    column_width = 0.2
+    column_width = 0.1
 
     positions_1 = np.arange(5)
     positions_2 = [previous_width + column_width for previous_width in positions_1]
-    positions_3 = [previous_width + column_width for previous_width in positions_2]
+    positions_3 = [previous_width + column_width + 0.05 for previous_width in positions_2]
+    positions_4 = [previous_width + column_width  for previous_width in positions_3]
+    positions_5 = [previous_width + column_width + 0.05  for previous_width in positions_4]
+    positions_6 = [previous_width + column_width for previous_width in positions_5]
 
     plt.figure(figsize=[10, 7])
     # I have choose the colours from the following website:
     # https://www.color-hex.com/
-    plt.bar(positions_1, opaque_all, color='#aa77aa', width=column_width, edgecolor='white', label='Opaque sort-merge join algorithm')
-    plt.bar(positions_1, opaque_reading,color='#a7a7a7', width=column_width, edgecolor='white', label='Reading cost')
-    plt.bar(positions_2, oblidb_om_all, color='#46282a', edgecolor='white', width=column_width, label='ObliDB 0-OM algorithm')
-    plt.bar(positions_2, oblidb_om_reading, color='#a7a7a7', edgecolor='white', width=column_width)
-    plt.bar(positions_3, oblidb_hash_all, color='#117791', edgecolor='white', width=column_width, label='ObliDB hash join algorithm')
-    plt.bar(positions_3, oblidb_hash_reading, color='#a7a7a7', edgecolor='white', width=column_width)
+
+    plt.bar(positions_1, opaque_reading,color='#d8a510', width=column_width, edgecolor='white', label='Reading cost')
+    plt.bar(positions_2, opaque_all, color='#aa77aa', width=column_width, edgecolor='white',
+            label='Opaque sort-merge join cost')
+
+    plt.bar(positions_3, oblidb_om_reading, color='#d8a510', edgecolor='white', width=column_width)
+    plt.bar(positions_4, oblidb_om_all, color='#46282a', edgecolor='white', width=column_width,
+            label='ObliDB 0-OM cost')
+
+    plt.bar(positions_5, oblidb_hash_reading, color='#d8a510', edgecolor='white', width=column_width)
+    plt.bar(positions_6, oblidb_hash_all, color='#117791', edgecolor='white', width=column_width,
+            label='ObliDB hash join cost')
 
     plt.xlabel('Block size', fontsize=20)
     plt.ylabel('Cost [Number of memory accesses]', fontsize=20)

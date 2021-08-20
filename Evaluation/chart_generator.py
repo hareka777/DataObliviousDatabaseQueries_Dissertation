@@ -655,21 +655,21 @@ def generate_chart_2(oblidb_small_all_costs, oblidb_small_reading):
     plt.figure(figsize=[10, 7])
     # I have choose the colours from the following website:
     # https://www.color-hex.com/
-    plt.bar(positions_1, all_costs_block_1, color='#aa77aa', width=column_width, edgecolor='white',
-            label='Costs with 1 record/block')
-    plt.bar(positions_1, reading_costs_block_1, color='#a7a7a7', width=column_width, edgecolor='white', label='Reading cost')
-    plt.bar(positions_2, all_costs_block_3, color='#46282a', edgecolor='white', width=column_width,
-            label='Costs with 3 record/block')
-    plt.bar(positions_2, reading_costs_block_3, color='#a7a7a7', edgecolor='white', width=column_width)
-    plt.bar(positions_3, all_costs_block_5, color='#117791', edgecolor='white', width=column_width,
-            label='Costs with 5 record/block')
-    plt.bar(positions_3, reading_costs_block_5, color='#a7a7a7', edgecolor='white', width=column_width)
-    plt.bar(positions_4, all_costs_block_10, color='#99281f', edgecolor='white', width=column_width,
-            label='Costs with 10 record/block')
-    plt.bar(positions_4, reading_costs_block_10, color='#a7a7a7', edgecolor='white', width=column_width)
-    plt.bar(positions_5, all_costs_block_20, color='#bbbb22', edgecolor='white', width=column_width,
-            label='Costs with 20 record/block')
-    plt.bar(positions_5, reading_costs_block_20, color='#a7a7a7', edgecolor='white', width=column_width)
+    # https://www.colorhexa.com/16790e
+    plt.bar(positions_1, all_costs_block_1, color='white', width=column_width, edgecolor='black',label='Writing cost')
+    plt.bar(positions_1, reading_costs_block_1, color='#aa77aa', width=column_width, edgecolor='black', label='Reading cost (1 record/block)')
+    plt.bar(positions_2, all_costs_block_3, color='white', edgecolor='black', width=column_width)
+    plt.bar(positions_2, reading_costs_block_3, color='#46282a', edgecolor='black', width=column_width,
+            label='Reading cost (3 records/block)')
+    plt.bar(positions_3, all_costs_block_5, color='white', edgecolor='black', width=column_width)
+    plt.bar(positions_3, reading_costs_block_5, color='#117791', edgecolor='black', width=column_width,
+            label='Reading cost (5 records/block)')
+    plt.bar(positions_4, all_costs_block_10, color='white', edgecolor='black', width=column_width)
+    plt.bar(positions_4, reading_costs_block_10, color='#99281f', edgecolor='black', width=column_width,
+            label='Reading cost (10 records/block)')
+    plt.bar(positions_5, all_costs_block_20, color='white', edgecolor='black', width=column_width)
+    plt.bar(positions_5, reading_costs_block_20, color='#bbbb22', edgecolor='black', width=column_width,
+            label='Reading cost (20 records/block)')
 
     plt.xlabel('Oblivious memory size', fontsize=25)
     plt.ylabel('Cost [Number of memory accesses]', fontsize=25)
@@ -678,7 +678,7 @@ def generate_chart_2(oblidb_small_all_costs, oblidb_small_reading):
     plt.xticks([r + column_width for r in range(len(positions_1))], oblivious_memory_sizes, fontsize=20)
     plt.title('Cost of ObliDB\'s Small filtering algorithm', fontsize=30)
 
-    plt.legend(fontsize=17)
+    plt.legend(fontsize=16.9)
     plt.show()
 
 for memory in oblivious_memory_sizes:

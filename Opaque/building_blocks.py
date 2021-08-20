@@ -48,36 +48,7 @@ class BuildingBlocks():
                 print('Invalid partition sizes, bitonic sort over the blocks will be applied')
                 print('Partition length = ',partition_length)
                 print('Number of partitions = ', number_of_partitions)
-                '''self.__partitions = []
-                i = 0
-                while i < len(partitions_list):
-                    self.__partitions.append(dataframe_table.DataFrameTable(partitions_list[i].copy(deep=True)))
-                    i += 2
 
-                self.__sort_columns(sorting_key)
-
-                sorted_partitions_up = []
-                for partition in self.__partitions:
-                    sorted_partitions_up.append(dataframe_table.DataFrameTable(partition.copy(deep=True)))
-
-                self.__partitions = []
-                i = 1
-                while i < len(partitions_list):
-                    self.__partitions.append(dataframe_table.DataFrameTable(partitions_list[i].copy(deep=True)))
-                    i += 2
-                self.__sort_columns(sorting_key, 1)
-
-                sorted_partitions_down = []
-                for partition in self.__partitions:
-                    sorted_partitions_down.append(dataframe_table.DataFrameTable(partition.copy(deep=True)))
-
-                self.__partitions = []
-                for i in range(len(partitions_list)):
-                    if i % 2 == 0:
-                        self.__partitions.append(dataframe_table.DataFrameTable(sorted_partitions_up[int(i/2)].copy(deep=True)))
-                    else:
-                        self.__partitions.append(dataframe_table.DataFrameTable(sorted_partitions_down[int((i - 1)/2)].copy(deep=True)))
-'''
                 result = self.bitonic_sort_over_blocks(sorting_key)
                 return dataframe_table.DataFrameTable(result)
 
@@ -153,12 +124,7 @@ class BuildingBlocks():
             self.__sort_columns(sorting_key)
             self.__partitions.insert(0, first_partition)
 
-            '''splitted_partitions = self.__partitions
-            self.__partitions[0] = first_partition
-            self.__partitions[1:self.__no_partitions] = splitted_partitions'''
-
             # step 8: inverse shifting
-            #self.__shift_left()
 
             # shift columns between partitions
             partition_slice_to_shift = self.__partitions[0][0:rows_to_shift_forward].copy(deep=True)
@@ -274,17 +240,6 @@ class BuildingBlocks():
 
         return matrix.view(numpy_table.NumpyTable)
 
-    '''def __concat_partitions_into_matrix(self):
-        matrix = np.empty([self.__row_count_in_partition, self.__no_partitions] , dtype=pd.Series)
-
-        for column_idx in range(self.__no_partitions):
-            partition = self.__partitions[column_idx]
-            for row_idx in range(partition.shape[0]):
-                row = partition.iloc[row_idx]
-                matrix[row_idx, column_idx] = row[1:len(row)]
-
-        return matrix.view(numpy_table.NumpyTable)'''
-
     def __separate_matrix_to_partitions(self, matrix):
 
         for column_idx in range(self.__no_partitions):
@@ -344,12 +299,6 @@ class BuildingBlocks():
             size_of_data = count
             partition_size = int(size_of_data / 2)
 
-            '''
-            data_memory = float(data[bottom_index:bottom_index + size_of_data].memory_usage(deep=True).sum()) * 10 ** -6
-            available_data_memory = self.__enclave_size / 1.5
-            if data_memory <= available_data_memory:
-                self.__enclave_size = True'''
-
 
             # compare and swap all ith and (i + partition_size)th elements
             for i in range(bottom_index, bottom_index + partition_size):
@@ -373,7 +322,6 @@ class BuildingBlocks():
         # executing inplace comparing and swapping
         # reading the writing the elements here gives the oblivious memeory accesses
 
-        #print('{} : {}'.format(element1_index, element2_index))
         # reading in the elements
         cost_tracker.ObliviousTracker.set_tracking_enabled_flag(True)
         element1 = data.loc[element1_index]
@@ -448,7 +396,6 @@ class BuildingBlocks():
 
         # Scans the array to insert the element to the list
     def __sort_leftover_elements(self, data, boundary, key, direction):
-        #print(data.loc[boundary])
         for index in range(boundary, data.shape[0]):
             for i in range(boundary):
                 self.__compare_and_swap_elements(data, i, index, key, direction)
@@ -462,14 +409,6 @@ class BuildingBlocks():
         cost_tracker.ObliviousTracker.register_memory_access(element2_index, False)
         cost_tracker.ObliviousTracker.set_tracking_enabled_flag(False)
 
-    '''def __transpose(self, table):
-        transposed_table = np.empty((table.shape[1], table.shape[0]), dtype=table.dtype).view(numpy_table.NumpyTable)
-
-        for row in range(table.shape[0]):
-            for column in range(table.shape[1]):
-                transposed_table[column, row] = table[row, column]
-        return transposed_table
-'''
     def __log_transpose_operation_costs(self, number_of_rows, number_of_columns):
         for row in range(number_of_rows):
             for column in range(number_of_columns):
@@ -478,80 +417,6 @@ class BuildingBlocks():
                 common_building_blocks.log_metrics(accessed_index=read_element, read=True)
                 common_building_blocks.log_metrics(accessed_index=written_element, read=False)
 
-
-    '''def __shift_right(self):
-        partition_length = self.__row_count_in_partition
-        rows_to_shift_forward = int(math.floor(partition_length / 2))
-
-        # removing the last and the first partitions
-        first_new_partition = None
-        last_new_partition = None
-
-        # shift partitions to right, floor(r/2) shift
-        shift_step = int(math.floor(partition_length / 2))
-        new_partitions = {}
-        for i in range(len(self.__partitions)):
-            current_partition = self.__partitions[i]
-            current_partition_first_half = current_partition[0:rows_to_shift_forward]
-            current_partition_second_half = current_partition[rows_to_shift_forward:partition_length]
-            first_half_partition_index = i
-            second_half_partition_index = i + len(self.__partitions)
-
-            # execute shifting
-            index_to_shift = (first_half_partition_index + shift_step) % (2 * self.__no_partitions)
-            if index_to_shift < self.__no_partitions:
-                index_to_shift = (index_to_shift + 1) % self.__no_partitions
-
-            new_partitions[index_to_shift] = current_partition_first_half
-            index_to_shift = (second_half_partition_index + shift_step) % (2 * self.__no_partitions)
-            if index_to_shift < self.__no_partitions:
-                index_to_shift = (index_to_shift + 1) % self.__no_partitions
-            new_partitions[index_to_shift] = current_partition_second_half
-
-        # updating __self.partitions
-        for partition_index in range(self.__no_partitions):
-            self.__partitions[partition_index] = pd.concat(
-                [new_partitions[partition_index], new_partitions[partition_index + self.__no_partitions]],
-                ignore_index=True)
-
-        print('OK')'''
-
-    '''def __shift_left(self):
-        partition_length = self.__row_count_in_partition
-        rows_to_shift_forward = int(math.floor(partition_length / 2))
-
-        # shift partitions to right, floor(r/2) shift
-        shift_step = int(math.floor(partition_length / 2))
-        new_partitions = {}
-        for i in range(len(self.__partitions)):
-            current_partition = self.__partitions[i]
-            current_partition_first_half = current_partition[0:rows_to_shift_forward]
-            current_partition_second_half = current_partition[rows_to_shift_forward:partition_length]
-            first_half_partition_index = i
-            second_half_partition_index = i + len(self.__partitions)
-
-            # execute shifting
-            if first_half_partition_index < self.__no_partitions:
-                index_to_shift = (first_half_partition_index - 1) % self.__no_partitions
-            else:
-                index_to_shift = first_half_partition_index
-            index_to_shift = (index_to_shift - shift_step) % (2 * self.__no_partitions)
-            new_partitions[index_to_shift] = current_partition_first_half
-
-            if second_half_partition_index < self.__no_partitions:
-                index_to_shift = (second_half_partition_index - 1) % self.__no_partitions
-            else:
-                index_to_shift = second_half_partition_index
-            index_to_shift = (index_to_shift - shift_step) % (2 * self.__no_partitions)
-            new_partitions[index_to_shift] = current_partition_second_half
-
-        # updating __self.partitions
-        for partition_index in range(self.__no_partitions):
-            self.__partitions[partition_index] = pd.concat(
-                [new_partitions[partition_index], new_partitions[partition_index + self.__no_partitions]],
-                ignore_index=True)
-
-        print('OK')'''
 
 class PartitionSortThread(threading.Thread):
    def __init__(self, partition, sorting_key, sort_dir = None):

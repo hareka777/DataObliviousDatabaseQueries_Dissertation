@@ -51,12 +51,6 @@ def judge_condition(row, left_condition, right_condition, comparator):
 
     left_condition = getattr(row, left_condition)
 
-    # there is a bug in pandas merge, concat etc. methods: it does convert the original column types to another one
-    # this bug causes a bug in our case, when it converts integer values to float, to solve this problem,
-    # I decided to add this 'hack' to the code:
-    #if type(left_condition) == float:
-    #    left_condition = int(left_condition)
-
     if comparator == '==':
         if str(left_condition) == right_condition:
             return True
@@ -143,8 +137,6 @@ def scan_join(partitions, boundaries, join_attribute, left_conditions, right_con
             # setting up the parameters for the thread function
             partition = partitions[boundary_index]
             boundary = boundaries[boundary_index]
-            # logging the boundary record read in operation
-            #common_building_blocks.log_metrics(accessed_index=boundary_index, read=True)
             result_tables[boundary_index] = []
             # scanning the partitions
             thread = ScanJoinThread(partition, boundary, join_attribute, left_conditions, right_conditions, comparators, query, result_tables[boundary_index], boundary_index)
@@ -252,19 +244,14 @@ def scan_join_thread_function(partition, boundary, join_attribute, left_conditio
     common_building_blocks.log_metrics(accessed_index=boundary_index, read=True)
     results = dataframe_table.DataFrameTable(pd.DataFrame(columns=partition.columns))
     for row_idx in range(partition.shape[0]):
-        #partition = partition.reset_index()
 
         row = partition.iloc[row_idx]
-        # Logging the memory access and cost
-        # common_building_blocks.log_metrics(row_idx, read=True)
 
         # if this is a key element, return dummy record
         # DisplayName is a unique column in the key table, so we can decide if it's a primary key table record
         if pd.isnull(getattr(row, 'DisplayName')) == False:
             results = results.append(pd.DataFrame([[np.nan] * partition.shape[1]], columns=partition.columns), ignore_index=True)
             last_key_record = row
-            # registering writing operation after writing a dummy element
-            #common_building_blocks.log_metrics(accessed_index=row_idx, read=False)
         else:
 
             # flag indicating if we have a match
@@ -298,11 +285,7 @@ def scan_join_thread_function(partition, boundary, join_attribute, left_conditio
             if match_flag == True:
                 # join with the key record, we are ignoring the index(first element of row)
                 joined_record = pd.DataFrame([[np.nan] * partition.shape[1]], columns=partition.columns)
-                '''row = row.to_frame().transpose()
-                row = row.replace(np.nan, None)
-                last_key_record = last_key_record.to_frame().transpose()
-                last_key_record = last_key_record.replace(np.nan, None)
-                joined_record = pd.merge(row, last_key_record, on=join_attribute, suffixes=None)'''
+
                 # creating the record to join
                 for column in partition.columns:
                     if getattr(row, column) is not np.nan:
@@ -310,16 +293,8 @@ def scan_join_thread_function(partition, boundary, join_attribute, left_conditio
                     else:
                         joined_record[column] = getattr(last_key_record, column)
                 results = results.append(joined_record, ignore_index=True)
-                # registering writing a record
-                #common_building_blocks.log_metrics(accessed_index=row_idx, read=False)
             else:
                 # adding a dummy record to the result table
-                # row = np.array(row)[1:].reshape(1, partition.shape[1])
-                '''if pd.isnull(row['DisplayName']) == False:
-                    last_key_record = row'''
+
                 results = results.append(pd.DataFrame([[np.nan] * partition.shape[1]], columns=partition.columns), ignore_index=True)
-                # registering writing operation
-                #common_building_blocks.log_metrics(accessed_index=row_idx, read=False)
-        # we made a write operation anyway
-        #common_building_blocks.log_metrics(accessed_index=row_idx, read=False)
     result_table.append(results)

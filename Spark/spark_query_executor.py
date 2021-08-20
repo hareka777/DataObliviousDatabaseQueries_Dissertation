@@ -1,22 +1,15 @@
-# import pyspark class Row from module sql
 import os
 import sys
-# Set the path for spark installation
-# this is the path where you have built spark using sbt/sbt assembly
 os.environ['SPARK_HOME'] = r'C:\opt\spark\spark-3.1.2-bin-hadoop3.2\spark-3.1.2-bin-hadoop3.2'
 os.environ['HADOOP_HOME'] = r'C:\opt\spark\spark-3.1.2-bin-hadoop3.2\spark-3.1.2-bin-hadoop3.2\hadoop'
-# os.environ['SPARK_HOME'] = "/home/jie/d2/spark-0.9.1"
-# Append to PYTHONPATH so that pyspark could be found
 sys.path.append(r"C:\opt\spark\spark-3.1.2-bin-hadoop3.2\spark-3.1.2-bin-hadoop3.2\python")
 sys.path.append(r"C:\opt\spark\spark-3.1.2-bin-hadoop3.2\spark-3.1.2-bin-hadoop3.2\python\lib")
-# sys.path.append("/home/jie/d2/spark-0.9.1/python")
-# Now we are ready to import Spark Modules
 try:
     from pyspark import SparkContext
     from pyspark import SparkConf
-    print("Spark Modules are successfully imported")
+    print("Spark imported")
 except ImportError as e:
-    print ("Spark Module importing errors", e)
+    print ("Spark importing errors", e)
 
 import sys
 sys.path.append(r"C:/opt/spark/spark-3.1.2-bin-hadoop3.2/spark-3.1.2-bin-hadoop3.2/python/lib")

@@ -36,5 +36,4 @@ def experiment(database, query_list, oblivious_memory_size, block_size):
         print(query)
     cost_tracker.ObliviousTracker.log_experiment_results('Results\Opaque\Filtering\opaque_filtering_block_' +str(block_size) + '.txt ')
 
-    #experiment(query_list, oblivious_memory_size)
 

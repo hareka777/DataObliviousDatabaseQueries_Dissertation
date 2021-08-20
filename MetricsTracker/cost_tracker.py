@@ -58,10 +58,8 @@ class ObliviousTracker():
                 if cls.__last_read_location is None or int(accessed_element) >= cls.__last_read_location:
                     if cls.__last_read_location is None or (cls.__last_read_location + partial_cost == accessed_element and accessed_element % cls.__block_size == 0):
                         cls.__current_cost_read += partial_cost
-                        #print(cls.__current_cost_read)
                 else:
                     cls.__current_cost_read += partial_cost
-                    #print(cls.__current_cost_read)
             else:
                 if cls.__last_written_location is None or int(accessed_element) >= cls.__last_written_location:
                     if cls.__last_written_location is None or (cls.__last_written_location + partial_cost == accessed_element and accessed_element % cls.__block_size == 0):

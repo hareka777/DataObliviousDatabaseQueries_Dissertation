@@ -37,5 +37,3 @@ def experiment(database, query_list, oblivious_memory_size, block_size):
 
     cost_tracker.ObliviousTracker.log_experiment_results('Results\Opaque\Join\opaque_join_block_' +str(block_size) + 'mem_' + str(oblivious_memory_size) + '.txt ')
 
-    #experiment(query_list, oblivious_memory_size)
-

@@ -20,12 +20,10 @@ class BuildingBlocks():
         self.__enclave_size = enclave_size
 
     def bitonic_sort(self, data, key, sorting_direction, padding=False):
-        #data = self.__extend_with_dummies(data)
         number_of_elements = self.__reducing_array(data)
         self.__count = 0
 
         self.__bitonic_sort(data, key, 0, number_of_elements, sorting_direction)
-        #print('All operations: ', self.__count)
         self.__sort_leftover_elements(data, number_of_elements, key, sorting_direction)
 
         # if we are in oblivous padding, mode, to provide the same output table size, we can't drop the dummy records
@@ -43,11 +41,6 @@ class BuildingBlocks():
             partition_1_first_element = bottom_index
             partition_2_first_element = bottom_index + partition_size
 
-
-
-            #print(data[bottom_index:partition_2_first_element].shape[0])
-            #print(data[partition_2_first_element:partition_2_first_element + partition_size].shape[0])
-
             # executing bitonic sort on the two partitions
             # sorting partition 1 in ascending order while partition 2 in descending order to be able
             # to make a bitonic sequence
@@ -61,7 +54,6 @@ class BuildingBlocks():
     def __bitonic_merge(self, data, key, bottom_index, count, sorting_direction):
         data_memory = float(data[bottom_index:bottom_index +count].memory_usage(deep=True).sum()) * 10 ** -6
 
-        #print(data_memory)
         self.__enclave_usage = False
         available_data_memory = self.__enclave_size
         if data_memory <= available_data_memory:
@@ -86,7 +78,6 @@ class BuildingBlocks():
         # executing inplace comparing and swapping
         # reading the writing the elements here gives the oblivious memeory accesses
 
-        #print('{} : {}'.format(element1_index, element2_index))
         # reading in the elements
         if self.__enclave_usage == False:
             cost_tracker.ObliviousTracker.set_tracking_enabled_flag(True)
@@ -235,11 +226,6 @@ class BuildingBlocks():
                         # join with the key record, we are ignoring the index(first element of row)
                         joined_record = dataframe_table.DataFrameTable(
                             pd.DataFrame([[np.nan] * partition.shape[1]], columns=partition.columns))
-                        '''row = row.to_frame().transpose()
-                        row = row.replace(np.nan, None)
-                        last_key_record = last_key_record.to_frame().transpose()
-                        last_key_record = last_key_record.replace(np.nan, None)
-                        joined_record = pd.merge(row, last_key_record, on=join_attribute, suffixes=None)'''
                         # creating the record to join
                         for column in partition.columns:
                             if getattr(row, column) is not np.nan:
@@ -249,9 +235,6 @@ class BuildingBlocks():
                         result_table = result_table.append(joined_record, ignore_index=True)
                     else:
                         # adding a dummy record to the result table
-                        # row = np.array(row)[1:].reshape(1, partition.shape[1])
-                        '''if pd.isnull(row['DisplayName']) == False:
-                            last_key_record = row'''
                         result_table = result_table.append(dataframe_table.DataFrameTable(
                             pd.DataFrame([[np.nan] * partition.shape[1]], columns=partition.columns)),
                                                            ignore_index=True)

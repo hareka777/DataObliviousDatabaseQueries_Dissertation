@@ -2,13 +2,9 @@ from CommonBuildingBlocks import utils
 import numpy as np
 
 artists_table = utils.read_csv_table('Artists.csv')
-#artists_table = artists_table.sample(n=5000)
-#artists_table.to_csv('final_artists_table.csv')
 
-# selecting 20.000 random elements from the Artworks table and we're saving the final table as well
-artworks_table = utils.read_csv_table('Artworks.csv')#[0:20000]
-#artworks_table = artworks_table.sample(n=5000)
-#artworks_table.to_csv('final_artworks_table.csv')
+artworks_table = utils.read_csv_table('Artworks.csv')
+
 
 queries_artists_filtering = []
 
@@ -17,7 +13,6 @@ columns = artists_table.columns
 unique_nationalities = artists_table['Nationality'].unique()
 unique_nationalities = np.random.choice(unique_nationalities, 17, replace=False)
 unique_genders = artists_table['Gender'].unique()
-#unique_genders = np.random.choice(unique_genders, 1, replace=False)
 
 # generating queries where we're filtering for the Nationality column
 for i in range(len(unique_nationalities)):
@@ -125,12 +120,6 @@ for i in range(18):
 
 # writing the queries to a file
 
-'''file = open("generated_queries/artists_filtering_queries.txt", "w")
-for query in queries_artists_filtering:
-    file.write(query + "\n")
-file.close()
-
-queries_artworks_filtering = []'''
 # generating filtering queries for the Artworks table
 columns = artworks_table.columns
 
@@ -188,14 +177,10 @@ for i in range(10):
 # generating queries based on the Cataloged and Classification column values
 
 unique_cataloged = artworks_table['Cataloged'].unique()
-#unique_cataloged = np.random.choice(unique_cataloged, 1, replace=False)
 unique_classification = artworks_table['Classification'].unique()
-#unique_classification = np.random.choice(unique_classification, 1, replace=False)
-#unique_classification = np.random.choice(unique_classification, 40, replace=False)
 
 # Cataloged filter
 for i in range(len(unique_cataloged)):
-    # randomly select a few columns to for the query's SELECT part
 
     # selecting how many columns we'll select
     no_columns = np.random.choice(np.arange(1,len(columns)))

@@ -26,13 +26,6 @@ class QueryParser():
                 parsed_dict['from'] = search_result.group('selected_tables')
                 parsed_dict['from'] = parsed_dict['from'].replace(' ', '').split(',')
 
-                # if there is a join condition
-
-                '''if search_result.groups('join'):
-                    parsed_dict['join'] = search_result.group('join')
-                    parsed_dict['join'] = parsed_dict['join'].replace(' ', '')'''
-                print(len(search_result.groups()))
-
                 # SELECT, FROM, WHERE query
                 if len(search_result.groups()) == 3:
                     parsed_dict['where'] = search_result.group('where_condition')

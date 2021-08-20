@@ -14,32 +14,6 @@ class Table:
     def set_table(self, table):
         self.__table = table
 
-    '''def get_elements(self, row= None, column=None):
-        if row is None:
-            return self.__table[column]
-        elif column is None:
-            return self.__table.loc[row]
-        else:
-            return self.__table.loc[row][column]
-
-    def get_dimensions(self):
-        return self.__table.shape
-
-    def add_column(self, column_name, value):
-        self.__table[column_name] = value
-
-    def set_cell_value(self, row_idx, column, value):
-        self.__table.at[row_idx , column] = value
-
-    def drop_column(self, column):
-        self.__table.drop(column)
-
-    def get_columns(self):
-        return self.__table.columns
-
-    def get_slice(self, from_idx, to_idx):
-        return self.__table[: to_idx]'''
-
     def __getitem__(self, item):
         print('Getted')
         return self.__table.loc[item]

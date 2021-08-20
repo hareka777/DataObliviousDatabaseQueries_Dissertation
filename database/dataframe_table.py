@@ -5,9 +5,6 @@ from database import dataframe_table
 
 class DataFrameTable(pd.DataFrame):
 
-    '''def __init__(self, data=None, index=None, columns=None, dtype=None, copy=False):
-        super(DataFrameTable, self).__init__(data, index, columns, dtype, copy)'''
-
     def __init__(self, *args, **kwargs):
         super(DataFrameTable, self).__init__(*args, **kwargs)
 

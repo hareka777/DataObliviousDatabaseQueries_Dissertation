@@ -94,23 +94,7 @@ class Opaque:
         # STAGE 1: union
         unioned_table = dataframe_table.DataFrameTable(pd.concat(tables, ignore_index=True))
 
-        '''# pandas sometimes changes the type of the columns, so we need to make sure it does not happen
-
-        unioned_table = unioned_table.fillna(0)
-        for column in tables[0].columns:
-            type = tables[0].dtypes[column]
-            unioned_table.astype({column: type})
-
-        for column in tables[1].columns:
-            type = tables[1].dtypes[column]
-            unioned_table.astype({column: type})'''
-
-
         unioned_table = self.__opaque_blocks.column_sort(unioned_table, join_columns[0])
-        unioned_table.to_csv('column_sort_test.csv')
-
-        # join them together to the unioned table
-        #unioned_table = table.Table(None, pd.concat([Tp_sorted.get_table(), Tf_sorted.get_table()], ignore_index=True))
 
         # STAGE 2
         # partitions scanning
@@ -133,23 +117,14 @@ class Opaque:
         end = time.time()
         cost_tracker.ObliviousTracker.register_execution_time(end - start)
         cost_tracker.ObliviousTracker.register_result_table_size(result.shape[0])
-        result.to_csv('join_result.csv')
         print(result)
 
     def __scan_table(self, table, left_conditions, right_conditions, comparators):
         table = pd.DataFrame(table)
         result_table = pd.DataFrame(columns=table.columns)
-        #table[self.__condition_column] = 1
         results = []
-        #row_idx = 0
         for row_idx in range(int(table.shape[0])):
 
-            '''cost_tracker.ObliviousTracker.set_tracking_enabled_flag(True)
-            if row == table.shape[0]:
-                row = table[row:]
-            else:
-                row = table[row : row + 1]
-            cost_tracker.ObliviousTracker.set_tracking_enabled_flag(False)'''
             row = table.loc[row_idx]
             common_building_blocks.log_metrics(row_idx, read=True)
 

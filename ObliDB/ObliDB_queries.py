@@ -418,11 +418,6 @@ class ObliDB():
 
         unioned_table = self.__obliDB_blocks.bitonic_sort(unioned_table, join_columns[0], 0)
 
-        #unioned_table = self.__opaque_blocks.column_sort(unioned_table, join_columns[0])
-
-        # join them together to the unioned table
-        # unioned_table = table.Table(None, pd.concat([Tp_sorted.get_table(), Tf_sorted.get_table()], ignore_index=True))
-
         # STAGE 2
         # partitions scanning
         partitions = self.__opaque_blocks.split_data_to_partitions(unioned_table)
@@ -439,8 +434,6 @@ class ObliDB():
         # STAGE
         # filtering out non values, filtering the table based on join attributes: we do not need this step, as
         # we are at oblivious padding mode
-        #result = self.__opaque_blocks.column_sort(result, join_columns[0])
-        #result = self.__obliDB_blocks.bitonic_sort(result, join_columns[0], 0, padding=True)
 
         # registering the cost elapsed during the join execution
         end = time.time()

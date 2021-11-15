@@ -22,7 +22,14 @@ of the Opaque and ObliDB papers, this gave me the ability to analyse their stren
 and weaknesses further.
 
 ### Structure of the application
+The following picture illustrates the structure and main components of the application.
 
+![image](https://user-images.githubusercontent.com/37445999/141828099-6a4a2404-ed83-42c3-956b-19e95b9f498f.png)
 
+The file structure of this application corresnponds to this chart's elements. 
 
+The system's input is a set of SQL queries that are processed by three different, query executor units, the Opaque, ObliDB and Spark. These components use different query processing algorithms that we would like to analyse and compare. After the query executions finished, they return the result tables. The Query Parser component transforms the input SQL queries to provide input to the Opaque and ObliDB units and the Database component provides the database tables. 
 
+To be able to compare the performance of the different query processing systems and their algorithms, the Performance Tracker component logs the data access patterns and the  execution times.
+
+Finally, during the evaluation, the Evaluation unit creates chars, diagrams and table about the algorithms' performance based on the Performane Tracker unit's output and the Result Tables.

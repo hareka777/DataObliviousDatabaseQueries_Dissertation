@@ -33,3 +33,14 @@ The system's input is a set of SQL queries that are processed by three different
 To be able to compare the performance of the different query processing systems and their algorithms, the Performance Tracker component logs the data access patterns and the  execution times.
 
 Finally, during the evaluation, the Evaluation unit creates chars, diagrams and table about the algorithms' performance based on the Performane Tracker unit's output and the Result Tables.
+
+### Installation guide
+Most of the imported packages do not need any further installation. However importing Spark SQL need to be completed prior to running the code.
+
+The following guide provides all the information needed to install and import pyspark and all its dependencies. After executing the steps listed and explained in the guide, everything is ready to run the code. 
+
+https://bigdata-madesimple.com/guide-to-install-spark-and-use-pyspark-from-jupyter-in-windows/
+
+### Additional installation and general information and support
+https://spark.apache.org/docs/latest/api/python/getting_started/install.html
+https://medium.com/analytics-vidhya/installing-and-using-pyspark-on-windows-machine-59c2d64af76e
